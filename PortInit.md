@@ -1,11 +1,11 @@
 * SPI
 <pre><code>
-              |                 |
-              |             P3.0|-> Data Out (UCB0SIMO)
-              |                 |
-              |             P3.1|<- Data In (UCB0SOMI)
-              |                 |
-   Slave(CS)<-|P1.2         P3.2|-> Serial Clock Out (UCB0CLK)
+               |                 |
+               |             P3.0|-> Data Out (UCB0SIMO)
+               |                 |
+               |             P3.1|<- Data In (UCB0SOMI)
+               |                 |
+    Slave(CS)<-|P1.2         P3.2|-> Serial Clock Out (UCB0CLK)
 
 </code></pre>
 
