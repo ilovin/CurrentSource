@@ -1,8 +1,38 @@
-2014-7-14
+2014-7-14 
 
-买电阻:
-http://item.taobao.com/item.htm?id=19279582692&tracelogww=ltckbburl
-http://item.taobao.com/item.htm?id=18549000302&tracelogww=ltckbburl
+比值电阻
+两个档位
+档位1 
+182 R  PPM25
+1.1K +715R  PPM15
+18.2K  PPM15
+
+档位2
+294R  PPM15
+2.94K  PPM25
+29.8K  PPM15
+
+
+主电路电阻
+33k * 8  （一般精密即可）
+
+备用采样电阻
+拆机件AE蓝色金属箔电阻 各一个
+180R
+1.8K
+18K
+
+
+采样电阻 20元，高精密电阻
+150   需要串联  22.2R（SMR1D） + 128R（SMR1D，拆机组件）
+1.6k  有  SMR1D V
+15.91k  有  SMR1D
+AD输入电压略大
+需要考虑给AD管脚加3V的稳压二极管
+
+
+
+
 
 2014-7-13
 
