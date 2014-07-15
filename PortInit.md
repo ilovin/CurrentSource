@@ -1,3 +1,19 @@
+* ADG5405
+<pre><code>
+         P3.6->|A1               |
+         P3.5->|A0               |
+
+</code></pre>
+
+* TS5N214
+<pre><code>
+         P1.5->|1/OE             |
+         P1.4->|2/OE             |
+         P1.3->|S1               |
+         P1.2->|S0               |
+
+</code></pre>
+
 * SPI
 <pre><code>
                |                 |
