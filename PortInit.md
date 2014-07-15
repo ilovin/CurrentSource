@@ -5,7 +5,7 @@
                |                 |
                |             P3.1|<- Data In (UCB0SOMI)
                |                 |
-    Slave(CS)<-|P1.2         P3.2|-> Serial Clock Out (UCB0CLK)
+    Slave(CS)<-|P2.5         P3.2|-> Serial Clock Out (UCB0CLK)
            DA->|OUTA 4
 
 </code></pre>
