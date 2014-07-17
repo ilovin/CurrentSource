@@ -208,11 +208,6 @@ int main(void)
     	  buttom_fct_flags = 0;
       }
 
-      if(function!=0) // not off
-      {
-          ADC12CTL0 |= ADC12SC;   // Start sampling/conversion
-      }
-
 
 //    OLED_ShowStr(0,0,(unsigned char *)F2S(DMA_A1,tstr),8,1); //6*8
       if(fct_stc_flag != 0)
@@ -220,6 +215,12 @@ int main(void)
           fct_stc_flag = 0;
           fct_stc_opt();
       }
+
+      if(function!=0) // not off
+      {
+          ADC12CTL0 |= ADC12SC;   // Start sampling/conversion
+      }
+
       switch(function)
       {
           case 0:
@@ -238,13 +239,13 @@ int main(void)
 //                      OLED_ON();
 //                      OLED_Clear(0x00);
                         set_ack_flag = 0;
-                        MST_Data = (u16)(Datavin*4095/4);
+                        MST_Data = (u16)(Datavin);
                         MST_Data |= 0x8000;
                         SPISend(MST_Data);
-                        OLED_ShowStr(0,2,"I:",2,1); //6*8
-                        OLED_ShowStr(16,2,(unsigned char *)F2S(Datai,tstr),8,1); //6*8
-                        OLED_ShowStr(0,3,"stalls:",7,1); //6*8
-                        OLED_ShowStr(42,3,(unsigned char *)I2S(stalls,tstr),6,1); //6*8
+                        OLED_ShowStr(0,1,"I:",2,1); //6*8
+                        OLED_ShowStr(16,1,(unsigned char *)F2S(Datai,tstr),8,1); //6*8
+                        OLED_ShowStr(0,2,"stalls:",7,1); //6*8
+                        OLED_ShowStr(42,2,(unsigned char *)I2S(stalls,tstr),6,1); //6*8
                     }
               }
               else   // current_pot
@@ -288,10 +289,10 @@ int main(void)
           break;
 
       }//end of function switch;
-//      OLED_ShowStr(0,3,(unsigned char *)F2S(DMA_A0,tstr),4,1); //6*8
-//      OLED_ShowStr(0,4,(unsigned char *)F2S(DMA_A1,tstr),4,1); //6*8
-//      OLED_ShowStr(0,5,(unsigned char *)F2S(DMA_A2,tstr),4,1); //6*8
-//      OLED_ShowStr(0,6,(unsigned char *)F2S(ADC12MEM3,tstr),4,1); //6*8
+      OLED_ShowStr(0,4,(unsigned char *)F2S(DMA_A0,tstr),4,1); //6*8
+      OLED_ShowStr(0,5,(unsigned char *)F2S(DMA_A1,tstr),4,1); //6*8
+      OLED_ShowStr(0,6,(unsigned char *)F2S(DMA_A2,tstr),4,1); //6*8
+      OLED_ShowStr(0,7,(unsigned char *)F2S(ADC12MEM3,tstr),4,1); //6*8
 
 //      Delay_ms(200);
       // if(strcmp(str_1,str)==0)
@@ -367,6 +368,7 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
 //                OLED_ShowStr(0,0,"Current_bt",11,1); //6*8
                   SET_flag = 1;
                   fct_stc_flag = 1;
+                  __bic_SR_register_on_exit(LPM3_bits);
     //            state = 0;
               }
               else if(strcmp("test",str)==0)
@@ -412,7 +414,7 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
     //                      __bic_SR_register_on_exit(LPM3_bits);
                             break;
                           }
-                          else if(strcmp("Stalls",str)==0 | strcmp("stalls",str)==0)
+                          else if(strcmp("Sts",str)==0 | strcmp("sts",str)==0)
                           {
                             state = 2;
     //                      __bic_SR_register_on_exit(LPM3_bits);
@@ -444,7 +446,7 @@ void __attribute__ ((interrupt(USCI_A0_VECTOR))) USCI_A0_ISR (void)
                                   case 1:
                                   {
     //                                state = 101;
-                                      Datavin= Datai/5; // 不同的档位输入给定不同
+                                      Datavin= Datai*30.03; // 不同的档位输入给定不同
                                       state = 0;
                                       SET_flag= 0;
                                       set_ack_flag = 1;
